@@ -1,0 +1,42 @@
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+
+interface FormFieldProps {
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+  error?: string;
+  hint?: string;
+  className?: string;
+  children: React.ReactNode;
+}
+
+export function FormField({
+  label,
+  htmlFor,
+  required,
+  error,
+  hint,
+  className,
+  children,
+}: FormFieldProps) {
+  return (
+    <div className={cn("space-y-1.5", className)}>
+      <Label htmlFor={htmlFor}>
+        {label}
+        {required && (
+          <span className="ml-0.5 text-red-600" aria-hidden="true">
+            *
+          </span>
+        )}
+      </Label>
+      {children}
+      {hint && !error && <p className="text-xs text-muted">{hint}</p>}
+      {error && (
+        <p className="text-xs font-medium text-red-600" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
