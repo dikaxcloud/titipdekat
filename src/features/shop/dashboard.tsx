@@ -178,7 +178,7 @@ export function ShopDashboard() {
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+        <Card className="min-w-0 lg:col-span-2">
           <CardHeader className="flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
             <div className="min-w-0">
               <CardTitle>Penawaran masuk</CardTitle>
@@ -239,7 +239,7 @@ export function ShopDashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="min-w-0">
           <CardHeader className="flex-row items-start justify-between gap-3">
             <div>
               <CardTitle>Stok perlu perhatian</CardTitle>
