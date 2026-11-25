@@ -11,9 +11,12 @@ import {
 } from "lucide-react";
 import { DashboardPreview } from "@/components/landing/dashboard-preview";
 import { Button } from "@/components/ui/button";
+import { WordReveal } from "@/components/animation/word-reveal";
+import { MotionTap } from "@/components/animation/motion-tap";
+import { Reveal } from "@/components/animation/reveal";
 
 const trustPoints = [
-  { icon: Handshake, label: "Dua role terhubung" },
+  { icon: Handshake, label: "Satu catatan, dua pihak" },
   { icon: TrendingUp, label: "Stok & komisi otomatis" },
   { icon: Wallet, label: "Settlement transparan" },
 ];
@@ -43,10 +46,10 @@ export function Hero() {
             </div>
 
             <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[56px]">
-              Bangun Kemitraan.
+              <WordReveal text="Titipan tercatat rapi." />
               <br />
               <span className="relative text-brand-600">
-                Kembangkan Bisnis.
+                <WordReveal text="Rekonsiliasi jelas." />
                 <svg
                   className="absolute -bottom-2 left-0 h-2.5 w-full text-brand-300/70"
                   viewBox="0 0 200 10"
@@ -65,23 +68,28 @@ export function Hero() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-              Solusi cerdas untuk menghubungkan produsen dan mitra warung melalui
-              pengelolaan konsinyasi yang mudah dan transparan.
+              TitipDekat menyatukan pencatatan konsinyasi produsen dan warung
+              mitra—dari penawaran, stok, penjualan, retur, komisi, sampai
+              settlement dalam satu alur yang sama.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button size="lg" asChild>
-                <Link href="/register">
-                  Mulai Sekarang
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href="#cara-kerja">
-                  <PlayCircle className="size-4" />
-                  Pelajari Lebih Lanjut
-                </a>
-              </Button>
+              <MotionTap>
+                <Button size="lg" asChild>
+                  <Link href="/register">
+                    Mulai Sekarang
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
+              </MotionTap>
+              <MotionTap>
+                <Button size="lg" variant="outline" asChild>
+                  <a href="#cara-kerja">
+                    <PlayCircle className="size-4" />
+                    Lihat Alur Rekonsiliasi
+                  </a>
+                </Button>
+              </MotionTap>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -121,7 +129,9 @@ export function Hero() {
           </div>
 
           <div className="lg:pl-4">
-            <DashboardPreview />
+            <Reveal y={24} start="top 90%">
+              <DashboardPreview />
+            </Reveal>
           </div>
         </div>
 

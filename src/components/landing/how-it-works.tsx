@@ -1,3 +1,6 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
 import {
   FilePlus2,
   PackageCheck,
@@ -5,6 +8,8 @@ import {
   Store,
   Wallet,
 } from "lucide-react";
+import { WordReveal } from "@/components/animation/word-reveal";
+import { gsap } from "@/lib/gsap";
 
 const steps = [
   {
@@ -40,6 +45,42 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const listRef = useRef<HTMLOListElement | null>(null);
+
+  useLayoutEffect(() => {
+    const element = listRef.current;
+    if (!element) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        "[data-step]",
+        { autoAlpha: 0, y: 16 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: { trigger: element, start: "top 82%", once: true },
+        },
+      );
+      gsap.fromTo(
+        "[data-connector]",
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: "power1.out",
+          scrollTrigger: { trigger: element, start: "top 82%", once: true },
+        },
+      );
+    }, element);
+
+    return () => context.revert();
+  }, []);
+
   return (
     <section id="cara-kerja" className="py-16 sm:py-20">
       <div className="container-page">
@@ -47,25 +88,31 @@ export function HowItWorks() {
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
             Cara kerja
           </p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Lima langkah dari titipan menjadi lunas
-          </h2>
+          <WordReveal
+            as="h2"
+            text="Lima langkah dari titipan menjadi lunas"
+            className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl"
+          />
           <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
             Alur yang sama digunakan kedua role. Setiap perubahan langsung
             terlihat pada dashboard dan riwayat.
           </p>
         </div>
 
-        <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+        <ol ref={listRef} className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5 lg:gap-4">
           {steps.map((step, index) => (
             <li key={step.title} className="relative">
               {index < steps.length - 1 && (
                 <span
+                  data-connector
                   className="absolute left-[calc(50%+28px)] right-[-50%] top-7 hidden h-px bg-gradient-to-r from-brand-200 to-line lg:block"
                   aria-hidden="true"
                 />
               )}
-              <div className="relative flex h-full flex-col items-center rounded-2xl border border-line bg-white p-5 text-center shadow-sm">
+              <div
+                data-step
+                className="relative flex h-full flex-col items-center rounded-2xl border border-line bg-white p-5 text-center shadow-sm"
+              >
                 <span className="flex size-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 ring-1 ring-brand-100">
                   <step.icon className="size-6" />
                 </span>

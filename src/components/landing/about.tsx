@@ -4,6 +4,8 @@ import {
   Layers3,
   ShieldCheck,
 } from "lucide-react";
+import { WordReveal } from "@/components/animation/word-reveal";
+import { Reveal } from "@/components/animation/reveal";
 
 const points = [
   {
@@ -35,14 +37,17 @@ export function About() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
               Tentang TitipDekat
             </p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Konsinyasi seharusnya tidak membingungkan.
-            </h2>
+            <WordReveal
+              as="h2"
+              text="Konsinyasi seharusnya tidak membingungkan."
+              className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl"
+            />
             <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-              Banyak produsen rumahan dan warung masih mencatat titipan di buku
-              atau pesan chat. Akibatnya stok tidak cocok, komisi sulit dicek,
-              dan pembayaran tertunda. TitipDekat menyatukan seluruh alur
-              tersebut dalam satu tempat yang mudah dipakai.
+              Banyak produsen rumahan dan warung masih mencatat titipan di buku,
+              chat, atau spreadsheet terpisah. Akibatnya stok tidak cocok,
+              komisi sulit dicek, dan pembayaran tertunda. TitipDekat menyatukan
+              seluruh alur tersebut dalam satu catatan bersama yang dipakai
+              kedua pihak.
             </p>
             <div className="mt-6 flex items-start gap-3 rounded-2xl border border-brand-100 bg-brand-50/70 p-4">
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-brand-600" />
@@ -58,10 +63,11 @@ export function About() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-1">
+          <Reveal className="grid gap-4 sm:grid-cols-1" stagger={0.1}>
             {points.map((point, index) => (
               <article
                 key={point.title}
+                data-reveal
                 className="flex gap-4 rounded-2xl border border-line bg-white p-5 shadow-sm"
               >
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-mist text-brand-700 ring-1 ring-line">
@@ -82,7 +88,7 @@ export function About() {
                 </div>
               </article>
             ))}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

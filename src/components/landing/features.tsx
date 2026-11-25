@@ -5,6 +5,8 @@ import {
   ReceiptText,
   Wallet,
 } from "lucide-react";
+import { WordReveal } from "@/components/animation/word-reveal";
+import { MotionCard } from "@/components/animation/motion-card";
 
 const features = [
   {
@@ -55,25 +57,30 @@ export function Features() {
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
-            Fitur utama
+            Inti rekonsiliasi
           </p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Semua yang dibutuhkan untuk konsinyasi yang rapi
-          </h2>
+          <WordReveal
+            as="h2"
+            text="Satu alur, dua pihak, angka yang sama"
+            className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl"
+          />
           <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-            Dirancang untuk alur kerja nyata produsen rumahan dan warung mitra,
-            bukan sekadar dashboard yang terlihat sibuk.
+            Dirancang untuk alur kerja nyata produsen rumahan dan warung mitra.
+            Setiap peristiwa titipan dicatat sekali, lalu menjadi dasar stok,
+            komisi, dan settlement kedua belah pihak.
           </p>
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <article
+            <MotionCard
               key={feature.title}
+              as="article"
+              index={index}
               className={
                 index === 4
-                  ? "group rounded-2xl border border-line bg-gradient-to-br from-brand-50 to-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md md:col-span-2 lg:col-span-1"
-                  : "group rounded-2xl border border-line bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                  ? "group h-full rounded-2xl border border-line bg-gradient-to-br from-brand-50 to-white p-6 shadow-sm transition-shadow hover:shadow-md md:col-span-2 lg:col-span-1"
+                  : "group h-full rounded-2xl border border-line bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
               }
             >
               <div className="flex items-start justify-between">
@@ -92,7 +99,7 @@ export function Features() {
               <p className="mt-1.5 text-sm leading-relaxed text-muted">
                 {feature.description}
               </p>
-            </article>
+            </MotionCard>
           ))}
         </div>
       </div>

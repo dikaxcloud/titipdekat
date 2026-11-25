@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, KeyRound, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WordReveal } from "@/components/animation/word-reveal";
+import { MotionTap } from "@/components/animation/motion-tap";
 
 export function CtaSection() {
   return (
@@ -26,31 +28,37 @@ export function CtaSection() {
                 <Sparkles className="size-3.5" />
                 Siap didemonstrasikan
               </div>
-              <h2 className="mt-4 max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-                Coba alur konsinyasi TitipDekat dari dua sisi.
-              </h2>
+              <WordReveal
+                as="h2"
+                text="Coba alur konsinyasi dari dua sisi."
+                className="mt-4 max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl"
+              />
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-brand-100/80 sm:text-base">
                 Masuk sebagai produsen untuk membuat penawaran, lalu berganti ke
                 role warung untuk menerima titipan dan mencatat penjualan. Semua
-                perubahan saling terhubung.
+                perubahan saling terhubung dalam satu riwayat.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/login">
-                    <KeyRound className="size-4" />
-                    Masuk dengan akun demo
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  asChild
-                  className="border border-white/20 bg-white/10 text-white shadow-none hover:bg-white/20"
-                >
-                  <Link href="/register">
-                    Daftar sekarang
-                    <ArrowRight className="size-4" />
-                  </Link>
-                </Button>
+                <MotionTap>
+                  <Button size="lg" variant="secondary" asChild>
+                    <Link href="/login">
+                      <KeyRound className="size-4" />
+                      Masuk dengan akun demo
+                    </Link>
+                  </Button>
+                </MotionTap>
+                <MotionTap>
+                  <Button
+                    size="lg"
+                    asChild
+                    className="border border-white/20 bg-white/10 text-white shadow-none hover:bg-white/20"
+                  >
+                    <Link href="/register">
+                      Daftar sekarang
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  </Button>
+                </MotionTap>
               </div>
             </div>
 

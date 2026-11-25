@@ -60,7 +60,7 @@ export function DashboardPreview() {
             </div>
             <span className="hidden items-center gap-1 rounded-full border border-brand-100 bg-brand-50 px-2 py-1 text-[10px] font-bold text-brand-700 sm:inline-flex">
               <span className="size-1.5 rounded-full bg-brand-500" />
-              Data live demo
+              Data simulasi
             </span>
           </div>
 

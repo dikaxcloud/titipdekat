@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Store, UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WordReveal } from "@/components/animation/word-reveal";
+import { MotionCard } from "@/components/animation/motion-card";
 
 const producerBenefits = [
   "Kirim penawaran ke beberapa warung tanpa mencatat ulang.",
@@ -25,9 +27,11 @@ export function Benefits() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
               Manfaat
             </p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Satu catatan, dua pihak yang diuntungkan
-            </h2>
+            <WordReveal
+              as="h2"
+              text="Satu catatan, dua pihak yang diuntungkan"
+              className="mt-3 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl"
+            />
             <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
               Produsen mendapatkan visibilitas, warung mendapatkan kemudahan.
               Keduanya melihat angka yang sama sehingga tidak ada lagi
@@ -43,7 +47,11 @@ export function Benefits() {
         </div>
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <article className="relative overflow-hidden rounded-2xl border border-brand-100 bg-gradient-to-br from-brand-50 via-white to-white p-6 shadow-sm sm:p-8">
+          <MotionCard
+            as="article"
+            index={0}
+            className="relative h-full overflow-hidden rounded-2xl border border-brand-100 bg-gradient-to-br from-brand-50 via-white to-white p-6 shadow-sm sm:p-8"
+          >
             <div
               className="absolute -right-12 -top-12 size-40 rounded-full bg-brand-100/70 blur-2xl"
               aria-hidden="true"
@@ -76,9 +84,13 @@ export function Benefits() {
                 </p>
               </div>
             </div>
-          </article>
+          </MotionCard>
 
-          <article className="relative overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-white p-6 shadow-sm sm:p-8">
+          <MotionCard
+            as="article"
+            index={1}
+            className="relative h-full overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-white p-6 shadow-sm sm:p-8"
+          >
             <div
               className="absolute -right-12 -top-12 size-40 rounded-full bg-blue-100/70 blur-2xl"
               aria-hidden="true"
@@ -111,7 +123,7 @@ export function Benefits() {
                 </p>
               </div>
             </div>
-          </article>
+          </MotionCard>
         </div>
       </div>
     </section>

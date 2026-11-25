@@ -33,7 +33,9 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis handles smooth scrolling on the landing page; native smooth
+       scrolling would fight with it and break anchor navigation. */
+    scroll-behavior: auto;
     scroll-padding-top: 5.5rem;
   }
 
@@ -149,5 +151,14 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  [data-word],
+  [data-reveal],
+  [data-step],
+  [data-connector] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
   }
 }
